@@ -1,0 +1,37 @@
+body {
+    font-family: "Cascadia Mono";
+}
+h1 {
+    background-color: aqua;
+    font-size: 65px;
+    padding: 25px;
+    margin-top: 0px;
+}
+button {
+    background-color: white;
+    border-radius: 5px;
+    border-width: 3px;
+    size: 150px;
+    font-size: larger;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: -50px;
+}
+button:hover {
+    animation: switchcol 0.2s linear 0s 1 normal;
+    background-color: black;
+    color: white;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+
+@keyframes switchcol {
+    from {
+        background-color: white;
+        color: black
+    }
+    to {
+        background-color: black;
+        color: white;
+    }
+}
