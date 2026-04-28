@@ -29,6 +29,9 @@ p {
 .big {
     font-size: 30px;
 }
+.logo {
+    block-size: 150px;
+}
 .login {
     position: absolute;
     right: 0.5%;
