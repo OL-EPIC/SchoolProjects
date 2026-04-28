@@ -32,6 +32,11 @@ p {
 .logo {
     block-size: 150px;
 }
+.logomini {
+    position: relative;
+    block-size: 75px;
+    top: 20px;
+}
 .login {
     position: absolute;
     right: 0.5%;
