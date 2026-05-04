@@ -37,7 +37,7 @@ p {
     block-size: 75px;
     top: 20px;
 }
-.login {
+#login {
     position: absolute;
     right: 0.5%;
     margin-top: -15px
