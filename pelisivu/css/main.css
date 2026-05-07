@@ -43,6 +43,10 @@ p {
     right: 0.5%;
     margin-top: -15px
 }
+.gamebuttons:disabled {
+    animation: switchcol2 0.2s linear 0s 1 normal;
+    background-color: white;
+}
 button:hover {
     animation: switchcol 0.2s linear 0s 1 normal;
     background-color: black;
