@@ -8,6 +8,7 @@ h1 {
     margin-top: 0px;
 }
 button {
+    --calor: white;
     background-color: white;
     animation: switchcol2 0.2s linear 0s 1 normal;
     border-radius: 5px;
@@ -49,6 +50,29 @@ button:hover {
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
 
+#g1 {
+    border-color: red;
+}
+#g2 {
+    border-color: black;
+}
+#g3 {
+    border-color: green;
+}
+#g4 {
+    border-color: blue;
+}
+#g5 {
+    display: none;
+    border-color: orange;
+}
+#g6 {
+    display: none;
+    border-color: purple;
+}
+.gamebuttons {
+    padding: 30px;
+}
 @keyframes switchcol {
     from {
         background-color: white;
