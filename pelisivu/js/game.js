@@ -15,6 +15,7 @@ let length_ = 3
 let maxRNG = 4
 let isMachineTurn = true
 let trigger = false
+let time = 0
 
 function getRN(max){
     return Math.floor(Math.random()*max)
@@ -27,8 +28,8 @@ function machineGEN() {
 }
 
 // debug
-machineGEN()
-console.log(machineInput)
+// machineGEN()
+// console.log(machineInput)
 
 /*async function demo() {
     for (let i = 0; i < 5; i++) {
@@ -40,44 +41,28 @@ console.log(machineInput)
 }
 demo()
 */
-async function machineDisplay(block) {
-    await sleep(1000)
-    if (block === 0){
-        key1.style.backgroundColor = "black"
-        console.log(0)
-        await sleep(5000)
-    }else if (block === 1){
-        key2.style.backgroundColor = "black"
-        console.log(1)
-        await sleep(5000)
-    }else if (block === 2){
-        key3.style.backgroundColor = "black"
-        console.log(2)
-        await sleep(5000)
-    }else if (block === 3){
-        key4.style.backgroundColor = "black"
-        console.log(3)
-        await sleep(5000)
-    }else if (block === 4){
-        key5.style.backgroundColor = "black"
-        console.log(4)
-        await sleep(5000)
-    }else if (block === 5){
-        key6.style.backgroundColor = "black"
-        console.log(5)
-        await sleep(5000)
-    }
-    trigger = true
-    key1.style.animation = "switchcol2 0.2s linear 0s 1 normal"
-    key2.style.animation = "switchcol2 0.2s linear 0s 1 normal"
-    key3.style.animation = "switchcol2 0.2s linear 0s 1 normal"
-    key4.style.animation = "switchcol2 0.2s linear 0s 1 normal"
-    key5.style.animation = "switchcol2 0.2s linear 0s 1 normal"
-    key6.style.animation = "switchcol2 0.2s linear 0s 1 normal"
+
+function resetGameButtonState(){
+    key1.style.animation="none"
+    key2.style.animation="none"
+    key3.style.animation="none"
+    key4.style.animation="none"
+    key5.style.animation="none"
+    key6.style.animation="none"
+    key1.offsetHeight;
+    key2.offsetHeight;
+    key3.offsetHeight;
+    key4.offsetHeight;
+    key5.offsetHeight;
+    key6.offsetHeight;
+    key1.style.animation=null
+    key2.style.animation=null
+    key3.style.animation=null
+    key4.style.animation=null
+    key5.style.animation=null
+    key6.style.animation=null
 }
-
-
-function frames() {
+async function frames() {
     if (score >= 15) {
         maxRNG = 5
     } else if (score >= 30) {
@@ -95,23 +80,33 @@ function frames() {
         key5.disabled = true
         key6.disabled = true
         for (const val of machineInput){
-            if (!trigger) {
+            time++
+            setTimeout(()=>{
                 if (val === 0){
-                    machineDisplay(0)
-                }else if (val === 1) {
-                    machineDisplay(1)
-                }else if (val === 2) {
-                    machineDisplay(2)
-                }else if (val === 3) {
-                    machineDisplay(3)
-                }else if (val === 4) {
-                    machineDisplay(4)
-                }else if (val === 5) {
-                    machineDisplay(5)
+                    key1.style.animation = "fullswitch 0.8s linear 0.1s 1 normal"
+                    console.log(0)
+                }else if (val === 1){
+                    key2.style.animation = "fullswitch 0.8s linear 0.1s 1 normal"
+                    console.log(1)
+                }else if (val === 2){
+                    key3.style.animation = "fullswitch 0.8s linear 0.1s 1 normal"
+                    console.log(2)
+                }else if (val === 3){
+                    key4.style.animation = "fullswitch 0.8s linear 0.1s 1 normal"
+                    console.log(3)
+                }else if (val === 4){
+                    key5.style.animation = "fullswitch 0.8s linear 0.1s 1 normal"
+                    console.log(4)
+                }else if (val === 5){
+                    key6.style.animation = "fullswitch 0.8s linear 0.1s 1 normal"
+                    console.log(5)
                 }
-            }
-            trigger = false
+            }, 1500*time)
+            setTimeout(()=>{
+                resetGameButtonState()
+            },1500*time+1500)
         }
+        machineInput = []
         isMachineTurn = false
     }
 }

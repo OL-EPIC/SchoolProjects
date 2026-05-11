@@ -10,7 +10,7 @@ h1 {
 button {
     --calor: white;
     background-color: white;
-    animation: switchcol2 0.2s linear 0s 1 normal;
+    /*animation: switchcol2 0.2s linear 0s 1 normal;*/
     border-radius: 5px;
     border-width: 3px;
     size: 150px;
@@ -44,7 +44,6 @@ p {
     margin-top: -15px
 }
 .gamebuttons:disabled {
-    animation: switchcol2 0.2s linear 0s 1 normal;
     background-color: white;
 }
 button:hover {
@@ -94,6 +93,21 @@ button:hover {
         color: white;
     }
     to {
+        background-color: white;
+        color: black;
+    }
+}
+
+@keyframes fullswitch {
+    0% {
+        background-color: white;
+        color: black;
+    }
+    50% {
+        background-color: black;
+        color: white;
+    }
+    100% {
         background-color: white;
         color: black;
     }
