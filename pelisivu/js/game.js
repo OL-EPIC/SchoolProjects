@@ -8,6 +8,7 @@ const key4 = document.getElementById("g4")
 const key5 = document.getElementById("g5")
 const key6 = document.getElementById("g6")
 const gameOvertxt = document.getElementById("lose")
+const restart = document.getElementById("restart")
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 let score = 0
 let machineInput = []
@@ -72,10 +73,10 @@ function resetGameButtonState(){
 }
 function frames() {
     if (score >= 15) {
-        key5.style.display = "block"
+        key5.style.display = "inline-block"
         maxRNG = 5
     } else if (score >= 30) {
-        key6.style.display = "block"
+        key6.style.display = "inline-block"
         maxRNG = 6
     } else {
         maxRNG = 4
@@ -131,12 +132,16 @@ function frames() {
             } else {
                 gameOver = true
                 gameOvertxt.style.display = "block"
+                restart.style.display = "block"
                 disableAllGameButtons()
                 clearInterval(frame)
             }
         }
     }
 }
+restart.addEventListener("click", ()=>{
+    location.reload()
+})
 key1.addEventListener("click", ()=>{
     yourInput.push(0)
     inputsDone++

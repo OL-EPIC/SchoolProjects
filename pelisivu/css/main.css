@@ -48,6 +48,11 @@ p {
     right: 0.5%;
     margin-top: -15px
 }
+
+#restart {
+    display: none;
+}
+
 .gamebuttons:disabled {
     background-color: white;
     cursor: not-allowed;
