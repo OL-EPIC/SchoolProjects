@@ -72,10 +72,10 @@ function resetGameButtonState(){
     key6.style.animation=null
 }
 function frames() {
-    if (score >= 15) {
+    if (score >= 10) {
         key5.style.display = "inline-block"
         maxRNG = 5
-    } else if (score >= 30) {
+    } else if (score >= 20) {
         key6.style.display = "inline-block"
         maxRNG = 6
     } else {
