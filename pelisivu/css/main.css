@@ -38,6 +38,11 @@ p {
     block-size: 75px;
     top: 20px;
 }
+#lose {
+    color: red;
+    font-size: 20px;
+    display: none;
+}
 #login {
     position: absolute;
     right: 0.5%;
@@ -45,11 +50,14 @@ p {
 }
 .gamebuttons:disabled {
     background-color: white;
+    cursor: not-allowed;
+    animation: none
 }
 button:hover {
-    animation: switchcol 0.2s linear 0s 1 normal;
     background-color: black;
+    animation: switchcol 0.2s linear 0s 1 normal;
     color: white;
+    cursor: pointer;
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
 

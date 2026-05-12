@@ -7,6 +7,7 @@ const key3 = document.getElementById("g3")
 const key4 = document.getElementById("g4")
 const key5 = document.getElementById("g5")
 const key6 = document.getElementById("g6")
+const gameOvertxt = document.getElementById("lose")
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 let score = 0
 let machineInput = []
@@ -14,8 +15,10 @@ let yourInput = []
 let length_ = 3
 let maxRNG = 4
 let isMachineTurn = true
-let trigger = false
 let time = 0
+let inputsDone = 0
+let gameOver = false
+let trigger = false
 
 function getRN(max){
     return Math.floor(Math.random()*max)
@@ -27,20 +30,25 @@ function machineGEN() {
     }
 }
 
-// debug
-// machineGEN()
-// console.log(machineInput)
-
-/*async function demo() {
-    for (let i = 0; i < 5; i++) {
-        console.log(`Waiting ${i} seconds...`);
-        await sleep(i * 1000);
-        console.log(`Waiting ${i} seconds...`);
-    }
-    console.log('Done');
+function disableAllGameButtons() {
+    console.log("disabled")
+    key1.disabled = true
+    key2.disabled = true
+    key3.disabled = true
+    key4.disabled = true
+    key5.disabled = true
+    key6.disabled = true
 }
-demo()
-*/
+
+function enableAllGameButtons() {
+    console.log("enabled")
+    key1.disabled = false
+    key2.disabled = false
+    key3.disabled = false
+    key4.disabled = false
+    key5.disabled = false
+    key6.disabled = false
+}
 
 function resetGameButtonState(){
     key1.style.animation="none"
@@ -62,23 +70,21 @@ function resetGameButtonState(){
     key5.style.animation=null
     key6.style.animation=null
 }
-async function frames() {
+function frames() {
     if (score >= 15) {
+        key5.style.display = "block"
         maxRNG = 5
     } else if (score >= 30) {
+        key6.style.display = "block"
         maxRNG = 6
     } else {
         maxRNG = 4
     }
     disscore.innerHTML = score
-    if (isMachineTurn) {
+    length_ = 3+(Math.floor(score/5))
+    if (isMachineTurn) { //repeats once
         machineGEN()
-        key1.disabled = true
-        key2.disabled = true
-        key3.disabled = true
-        key4.disabled = true
-        key5.disabled = true
-        key6.disabled = true
+        disableAllGameButtons()
         for (const val of machineInput){
             time++
             setTimeout(()=>{
@@ -106,16 +112,72 @@ async function frames() {
                 resetGameButtonState()
             },1500*time+1500)
         }
-        machineInput = []
-        isMachineTurn = false
+        if (length_ === time){
+            isMachineTurn = false
+            setTimeout(()=>{
+                enableAllGameButtons()
+            },1500*(length_+1))
+        }
+    }else if (!isMachineTurn) { //triggers every frame
+        if (length_ === inputsDone) {
+            if (JSON.stringify(yourInput)===JSON.stringify(machineInput)) {
+                score++
+                machineInput = []
+                yourInput = []
+                inputsDone = 0
+                console.log("+score")
+                isMachineTurn = true
+                time = 0
+            } else {
+                gameOver = true
+                gameOvertxt.style.display = "block"
+                disableAllGameButtons()
+                clearInterval(frame)
+            }
+        }
     }
 }
-
-
+key1.addEventListener("click", ()=>{
+    yourInput.push(0)
+    inputsDone++
+    // debug
+    console.log(`${yourInput}/${machineInput}`)
+    console.log(JSON.stringify(yourInput)===JSON.stringify(machineInput))
+})
+key2.addEventListener("click", ()=>{
+    yourInput.push(1)
+    inputsDone++
+    console.log(`${yourInput}/${machineInput}`)
+    console.log(JSON.stringify(yourInput)===JSON.stringify(machineInput))
+})
+key3.addEventListener("click", ()=>{
+    yourInput.push(2)
+    inputsDone++
+    console.log(`${yourInput}/${machineInput}`)
+    console.log(JSON.stringify(yourInput)===JSON.stringify(machineInput))
+})
+key4.addEventListener("click", ()=>{
+    yourInput.push(3)
+    inputsDone++
+    console.log(`${yourInput}/${machineInput}`)
+    console.log(JSON.stringify(yourInput)===JSON.stringify(machineInput))
+})
+key5.addEventListener("click", ()=>{
+    yourInput.push(4)
+    inputsDone++
+    console.log(`${yourInput}/${machineInput}`)
+    console.log(JSON.stringify(yourInput)===JSON.stringify(machineInput))
+})
+key6.addEventListener("click", ()=>{
+    yourInput.push(5)
+    inputsDone++
+    console.log(`${yourInput}/${machineInput}`)
+    console.log(JSON.stringify(yourInput)===JSON.stringify(machineInput))
+})
 playgame.addEventListener("click", () => {
     location.replace("./game.html")
 })
 home.addEventListener("click", () => {
     location.replace("./main.html")
 })
-setInterval(frames, 1)
+var frame = setInterval(frames, 1)
