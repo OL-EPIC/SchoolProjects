@@ -75,7 +75,7 @@ function frames() {
     if (score >= 20) {
         key6.style.display = "inline-block"
         maxRNG = 6
-    } else if (score >= 20) {
+    } else if (score >= 10) {
         key5.style.display = "inline-block"
         maxRNG = 5
     } else {
